@@ -1,0 +1,77 @@
+####################################
+# Python
+####################################
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.python-version
+*.egg-info/
+.eggs/
+build/
+dist/
+pip-wheel-metadata/
+.coverage
+htmlcov/
+.pytest_cache/
+.mypy_cache/
+
+####################################
+# Virtual Environments
+####################################
+.venv/
+venv/
+env/
+ENV/
+
+####################################
+# Environment & Secrets
+####################################
+.env
+.env.*
+config/settings.local.yaml
+
+####################################
+# OCI Sensitive Files
+####################################
+.oci/
+oci_api_key.pem
+oci_private_key.pem
+
+####################################
+# Streamlit
+####################################
+.streamlit/
+
+####################################
+# Logs & Runtime Files
+####################################
+logs/
+*.log
+nohup.out
+
+####################################
+# MCP / AI Temporary Files
+####################################
+*.ctx
+*.tokens
+*.cache
+ollama_logs/
+
+####################################
+# IDE / Editors
+####################################
+.idea/
+.vscode/
+*.sublime-project
+*.sublime-workspace
+
+####################################
+# OS / System Files
+####################################
+.DS_Store
+Thumbs.db
+desktop.ini
+
+######
+
