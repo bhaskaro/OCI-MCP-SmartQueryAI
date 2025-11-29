@@ -175,7 +175,7 @@ You can **copy and paste this directly into your README.md**.
 
 ---
 
-### **5.2. Environment Variables (Updated)**
+### **5.2. Environment Variables**
 
 The application now loads configuration from a **`.env` file** using `python-dotenv`.
 This keeps sensitive values out of your source code and simplifies deployment.
@@ -206,24 +206,7 @@ Or if you prefer using an example file:
 ```bash
 cp .env.example .env
 ```
-
-#### **Step 2 — Install python-dotenv (already included in requirements.txt)**
-
-```bash
-pip install python-dotenv
-```
-
-#### **Step 3 — Application automatically loads `.env`**
-
-No need to export variables manually anymore.
-Both MCP client and Streamlit UI load `.env` using:
-
-```python
-from dotenv import load_dotenv
-load_dotenv()
-```
-
-#### **Step 4 — Override per-session variables (optional)**
+#### **Step 2 — Override per-session variables (optional)**
 
 If you want to temporarily override values without editing `.env`:
 
