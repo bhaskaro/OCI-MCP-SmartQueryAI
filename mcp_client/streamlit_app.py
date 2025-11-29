@@ -7,11 +7,22 @@ from typing import Any, Dict
 
 import requests
 import streamlit as st
+from dotenv import load_dotenv
 
 from mcp_client_helper import MCPClientWrapper
 
-OLLAMA_URL = os.getenv("OLLAMA_URL", "http://localhost:11434/api/chat")
-OLLAMA_MODEL = os.getenv("OLLAMA_MODEL", "llama3.2")
+# Load environment variables from .env (project root)
+load_dotenv()
+
+OLLAMA_URL = os.getenv("OLLAMA_URL")
+OLLAMA_MODEL = os.getenv("OLLAMA_MODEL")
+
+# Optional: safety checks so you don't accidentally run with missing config
+if not OLLAMA_URL:
+    raise RuntimeError("OLLAMA_URL is not set. Please define it in .env or environment.")
+if not OLLAMA_MODEL:
+    raise RuntimeError("OLLAMA_MODEL is not set. Please define it in .env or environment.")
+
 
 mcp_client = MCPClientWrapper(server_path="python mcp_oci_server.py")
 

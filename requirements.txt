@@ -1,5 +1,24 @@
+# Core components
 mcp==1.22.0
 oci==2.164.0
-pip==23.2.1
 streamlit==1.51.0
 typer==0.20.0
+python-dotenv==1.2.1
+
+# MCP server (FastAPI-based)
+fastapi==0.115.0
+uvicorn==0.30.1
+
+# HTTP clients
+requests==2.32.3
+httpx==0.27.0
+anyio==4.4.0
+
+# Validation / Models
+pydantic==2.7.0
+
+# YAML support
+PyYAML==6.0.1
+
+# Optional (logging, rich console)
+rich==13.7.0

@@ -4,8 +4,16 @@ import asyncio
 import json
 from typing import Any, Dict, Tuple
 
+from dotenv import load_dotenv
+
 import streamlit as st
 
+# Load environment variables from .env (project root)
+load_dotenv()
+
+MCP_BASE_URL = os.getenv("MCP_BASE_URL")
+if not MCP_BASE_URL:
+    raise RuntimeError("MCP_BASE_URL is not set. Please define it in .env or environment.")
 # ---------------------------------------------------------
 # Ensure project root is on sys.path so `mcp_client` is importable
 # ---------------------------------------------------------
@@ -49,8 +57,7 @@ def run_smart_query(user_query: str) -> Tuple[str, Dict[str, Any]]:
     logs.append(f"User query:\n{user_query}\n")
 
     # MCP base URL (HTTP server for your MCP)
-    mcp_base_url = os.getenv("MCP_BASE_URL", "http://localhost:8000/mcp")
-    client = MCPClientWrapper(base_url=mcp_base_url)
+    client = MCPClientWrapper(base_url=MCP_BASE_URL)
 
     # 1) Ask Ollama for a plan
     logs.append("Calling Ollama for MCP plan...\n")

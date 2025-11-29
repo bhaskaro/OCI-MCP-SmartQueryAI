@@ -170,22 +170,70 @@ streamlit:
 
 > Adjust keys/structure to match the current `settings.yaml` in the repo if it has changed.
 
-### 5.2. Environment Variables
+Here is the **updated 5.2 Environment Variables section**, rewritten cleanly to match your new `.env`-based configuration model.
+You can **copy and paste this directly into your README.md**.
 
-On the **machine where you run MCP client / UI**:
+---
+
+### **5.2. Environment Variables (Updated)**
+
+The application now loads configuration from a **`.env` file** using `python-dotenv`.
+This keeps sensitive values out of your source code and simplifies deployment.
+
+#### **Step 1 — Create a `.env` file**
+
+From the project root:
 
 ```bash
-# LLM config
-export OLLAMA_URL="http://<ollama-host>:11434/api/chat"
-export OLLAMA_MODEL="llama3.2"
+cd OCI-MCP-SmartQueryAI
 
-# MCP server base URL
-export MCP_BASE_URL="http://localhost:8000/mcp"   # or your actual host:port
+cat > .env << 'EOF'
+# LLM / Ollama
+OLLAMA_URL=http://<ollama-host>:11434/api/chat
+OLLAMA_MODEL=llama3.2
+
+# MCP server
+MCP_BASE_URL=http://localhost:8000/mcp
 
 # (Optional) OCI config overrides
-export OCI_CONFIG_FILE="$HOME/.oci/config"
-export OCI_PROFILE="DEFAULT"
+OCI_CONFIG_FILE=$HOME/.oci/config
+OCI_PROFILE=DEFAULT
+EOF
 ```
+
+Or if you prefer using an example file:
+
+```bash
+cp .env.example .env
+```
+
+#### **Step 2 — Install python-dotenv (already included in requirements.txt)**
+
+```bash
+pip install python-dotenv
+```
+
+#### **Step 3 — Application automatically loads `.env`**
+
+No need to export variables manually anymore.
+Both MCP client and Streamlit UI load `.env` using:
+
+```python
+from dotenv import load_dotenv
+load_dotenv()
+```
+
+#### **Step 4 — Override per-session variables (optional)**
+
+If you want to temporarily override values without editing `.env`:
+
+```bash
+export OLLAMA_URL=http://my-new-host:11434/api/chat
+export OLLAMA_MODEL=llama3.2
+export MCP_BASE_URL=http://localhost:8000/mcp
+```
+
+The application will prefer exported variables over `.env`.
 
 ---
 
